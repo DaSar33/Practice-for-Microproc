@@ -1,0 +1,74 @@
+MAIN                                                                                                          PAGE 1
+
+                       1    $MOD51
+0000 020020            2    jmp start
+000B                   3    org 0bh
+000B C28C              4    clr TCON.4
+000D 32                5    reti
+0020                   6    org 20h
+0020                   7    start:
+0020 C3                8    clr C
+0021 758901            9    mov TMOD,#01h
+0024 D2AF             10    setb IE.7
+0026 D2A9             11    setb IE.1
+0028 75A000           12    mov P2,#0h
+002B                  13    Period:
+002B 7400             14    mov A,#0h
+002D 758A12           15    mov TL0,#12h
+0030 758CFF           16    mov TH0,#0FFh
+0033 F5A0             17    mov P2,A
+0035 D28C             18    setb TCON.4
+0037                  19    next1:
+0037 308DFD           20    jnb TCON.5, next1
+003A 7440             21    mov A,#40h
+003C 758A12           22    mov TL0,#12h
+003F 758CFF           23    mov TH0,#0FFh
+0042 F5A0             24    mov P2,A
+0044 D28C             25    setb TCON.4
+0046                  26    next2:
+0046 2402             27    add A,#2h
+0048 F5A0             28    mov P2,A
+004A 308DF9           29    jnb TCON.5,next2
+004D 74FF             30    mov A, #0FFh
+004F 758A12           31    mov TL0,#12h
+0052 758CFF           32    mov TH0,#0FFh
+0055 F5A0             33    mov P2,A
+0057 D28C             34    setb TCON.4
+0059                  35    next3:
+0059 308DFD           36    jnb TCON.5,next3
+005C 74FF             37    mov A,#0FFh
+005E 758A12           38    mov TL0,#12h
+0061 758CFF           39    mov TH0,#0FFh
+0064 F5A0             40    mov P2,A
+0066 D28C             41    setb TCON.4 
+0068                  42    next4:
+0068 24FC             43    add A,#-4h
+006A F5A0             44    mov P2,A
+006C 308DF9           45    jnb TCON.5,next4
+006F 7400             46    mov A,#0h 
+0071 758A12           47    mov TL0,#012h
+0074 758CFF           48    mov TH0,#0FFh
+0077 F5A0             49    mov P2,A
+0079 D28C             50    setb TCON.4 
+007B                  51    next5:
+007B 308DFD           52    jnb TCON.5,next5 
+007E C3               53    clr C
+007F 80AA             54    jmp Period 
+                      55    END
+
+VERSION 1.2k ASSEMBLY COMPLETE, 0 ERRORS FOUND
+MAIN                                                                                                          PAGE 2
+
+IE . . . . . . . . . . . . . . .  D ADDR  00A8H  PREDEFINED  
+NEXT1. . . . . . . . . . . . . .  C ADDR  0037H  
+NEXT2. . . . . . . . . . . . . .  C ADDR  0046H  
+NEXT3. . . . . . . . . . . . . .  C ADDR  0059H  
+NEXT4. . . . . . . . . . . . . .  C ADDR  0068H  
+NEXT5. . . . . . . . . . . . . .  C ADDR  007BH  
+P2 . . . . . . . . . . . . . . .  D ADDR  00A0H  PREDEFINED  
+PERIOD . . . . . . . . . . . . .  C ADDR  002BH  
+START. . . . . . . . . . . . . .  C ADDR  0020H  
+TCON . . . . . . . . . . . . . .  D ADDR  0088H  PREDEFINED  
+TH0. . . . . . . . . . . . . . .  D ADDR  008CH  PREDEFINED  
+TL0. . . . . . . . . . . . . . .  D ADDR  008AH  PREDEFINED  
+TMOD . . . . . . . . . . . . . .  D ADDR  0089H  PREDEFINED  
